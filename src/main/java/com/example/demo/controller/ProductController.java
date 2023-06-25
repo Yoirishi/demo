@@ -6,6 +6,7 @@ import com.example.demo.controller.dto.UpdateProductDto;
 import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.argument.CreateProductArgument;
+import com.example.demo.service.argument.UpdateProductArgument;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +46,14 @@ public class ProductController {
 
     @PutMapping("update/{id}")
     public ProductDto update(@PathVariable Long id, @RequestBody UpdateProductDto dto) {
-        return null;
+        Product product = productService.update(id, UpdateProductArgument.builder()
+                .price(dto.getPrice())
+                .title(dto.getTitle())
+                .build());
+        return ProductDto.builder()
+                .id(product.getId())
+                .title(product.getTitle())
+                .price(product.getPrice())
+                .build();
     }
 }
