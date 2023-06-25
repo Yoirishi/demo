@@ -1,9 +1,11 @@
 package com.example.demo.service.argument;
 
 
-import lombok.Getter;
+import lombok.Builder;
+import lombok.Value;
 
-@Getter
+@Value
+@Builder
 public class UpdateProductArgument {
     private String title;
 
